@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("rust_analyzer")
-config.default_config.cmd[1] = "./rust-analyzer"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./rust-analyzer" },
   -- adjusted from https://github.com/mattn/vim-lsp-settings/blob/master/installer/install-rust-analyzer.sh
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
@@ -27,4 +25,4 @@ return vim.tbl_extend('error', config, {
 
   chmod +x rust-analyzer
   ]]
-})
+}

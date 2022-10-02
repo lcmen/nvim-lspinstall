@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("hls")
-config.default_config.cmd = { "./hls" }
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./hls" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -23,4 +21,4 @@ return vim.tbl_extend('error', config, {
   echo "PATH=\$PATH:$(pwd) $(pwd)/haskell-language-server-wrapper --lsp" >> hls
   chmod +x hls
   ]]
-})
+}

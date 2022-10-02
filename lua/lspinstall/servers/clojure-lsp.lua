@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("clojure_lsp")
-config.default_config.cmd[1] = "./clojure-lsp"
-
-return vim.tbl_extend("error", config, {
+return {
+  cmd = { "./clojure-lsp" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -18,5 +16,5 @@ return vim.tbl_extend("error", config, {
   unzip -o clojure-lsp.zip
   rm clojure-lsp.zip
   chmod +x clojure-lsp
-  ]],
-})
+  ]]
+}

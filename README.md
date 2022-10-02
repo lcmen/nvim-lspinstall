@@ -1,40 +1,27 @@
-> :warning: I don't have time to maintain this repository anymore. Please use https://github.com/williamboman/nvim-lsp-installer instead, it does the same thing but better.
-
-![logo](/logo.png)
-
 ## About
 
-This is a very lightweight companion plugin for [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
-It adds the missing `:LspInstall <language>` command to conveniently install language servers.
+This is fork of [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall) plugin, adopted to the latest version of Neovim and `nvim-lspconfig`.
+The main difference between this and the original version, is providing a valid configuration (mainly `cmd` to start lsp server) which can be passed to `setup` function, instead of overriding the default settings for `nvim-lspconfig`.
 
-The language servers are installed *locally* into `stdpath("data")`, you can use `:echo stdpath("data")` to find out which directory that is on your machine.
-
-[Isn't this something I should use my system's package manager for?](https://ka.codes/posts/nvim-lspinstall#nvim-lspinstall)
+The language servers are installed *locally* (via `:LspInstall <language>` command) into `stdpath("data")`. You can use `:echo stdpath("data")` to find out which directory that is on your machine.
 
 ## Installation
 Via [Vim-Plug](https://github.com/junegunn/vim-plug)
 
 ```vim
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'lcmen/nvim-lspinstall'
 ```
 The following is a good starting point to integrate with [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
 ```lua
-require'lspinstall'.setup() -- important
-
 local servers = require'lspinstall'.installed_servers()
-for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{}
+for server, config in pairs(servers) do
+  require'lspconfig'[server].setup(config)
 end
 ```
-For a complete example you might refer to my personal configuration in the [Wiki](https://github.com/kabouzeid/nvim-lspinstall/wiki).
-
-
 ## Usage
 * `:LspInstall <language>` to install/update the language server for `<language>` (e.g. `:LspInstall python`).
 * `:LspUninstall <language>` to uninstall the language server for `<language>`.
-* `require'lspinstall'.setup()` to make configs of installed servers available for `require'lspconfig'.<server>.setup{}`.
-
 
 ## Advanced Configuration (recommended)
 
@@ -44,8 +31,8 @@ A configuration like this automatically reloads the installed servers after inst
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{}
+  for server, config in pairs(servers) do
+    require'lspconfig'[server].setup(config)
   end
 end
 
@@ -78,9 +65,7 @@ end
 | graphql     | GraphQL language service                                                    |
 | haskell     | haskell-language-server                                                     |
 | html        | html-language-features (pulled directly from the latest VSCode release)     |
-| java        | Eclipse JDTLS with Lombok                                                   |
 | json        | json-language-features (pulled directly from the latest VSCode release)     |
-| kotlin      | kotlin-language-server                                                      |
 | latex       | texlab                                                                      |
 | lua         | (sumneko) lua-language-server                                               |
 | php         | intelephense                                                                |
@@ -116,26 +101,22 @@ Here `config` is a LSP config for [nvim-lspconfig](https://github.com/neovim/nvi
 
 The following example provides an installer for `bash-language-server`.
 ```lua
--- 1. get the default config from nvim-lspconfig
-local config = require"lspinstall/util".extract_config("bashls")
--- 2. update the cmd. relative paths are allowed, lspinstall automatically adjusts the cmd and cmd_cwd for us!
-config.default_config.cmd[1] = "./node_modules/.bin/bash-language-server"
+require'lspinstall/servers'.bash = {
+  -- 1. provide cmd to start the server.
+  -- relative paths are allowed, lspinstall automatically adjusts the cmd and cmd_cwd for us!
+  config.default_config.cmd = { "./node_modules/.bin/bash-language-server" },
 
--- 3. extend the config with an install_script and (optionally) uninstall_script
-require'lspinstall/servers'.bash = vim.tbl_extend('error', config, {
+  -- 2. provide script to install the server.
   -- lspinstall will automatically create/delete the install directory for every server
   install_script = [[
   ! test -f package.json && npm init -y --scope=lspinstall || true
   npm install bash-language-server@latest
   ]],
   uninstall_script = nil -- can be omitted
-})
+}
 ```
 
-Make sure to do this before you call `require'lspinstall'.setup()`.
-
-Note: **don't** replace the `/` with a `.` in the `require` calls above ([see here if you're interested why](https://github.com/kabouzeid/nvim-lspinstall/issues/14)).
-
+Make sure to do this before you call `require'lspinstall'.installed_servers()`.
 
 ## Lua API
 
@@ -150,5 +131,3 @@ Note: **don't** replace the `/` with a `.` in the `require` calls above ([see he
 * `require'lspinstall'.post_uninstall_hook`
 
 * `require'lspinstall/servers'`
-
-* `require'lspinstall/util'.extract_config(<lspconfig-name>)`

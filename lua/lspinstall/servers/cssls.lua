@@ -1,4 +1,5 @@
 return {
+  cmd = { "node", "./vscode-css/css-language-features/server/dist/node/cssServerMain.js", "--stdio" },
   install_script = [[
   curl -o vscode.tar.gz -L https://update.code.visualstudio.com/latest/linux-x64/stable
   rm -rf vscode
@@ -12,13 +13,5 @@ return {
   cp -r vscode/resources/app/extensions/css-language-features vscode-css
 
   rm -rf vscode
-  ]],
-  default_config = {
-    cmd = { "node", "./vscode-css/css-language-features/server/dist/node/cssServerMain.js", "--stdio" },
-    filetypes = { 'css', 'less', 'scss' },
-    root_dir = require'lspconfig'.util.root_pattern(".git", vim.fn.getcwd()),
-    init_options = {
-      provideFormatter = true,
-    },
-  }
+  ]]
 }

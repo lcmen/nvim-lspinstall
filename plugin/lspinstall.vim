@@ -1,5 +1,4 @@
 " API
-
 function! lspinstall#install_server(lang)
   call v:lua.require("lspinstall").install_server(a:lang)
 endfunction
@@ -21,7 +20,6 @@ function! lspinstall#is_server_installed(lang) abort
 endfunction
 
 " Interface
-
 command! -nargs=1 -complete=custom,s:complete_install LspInstall :call lspinstall#install_server('<args>')
 command! -nargs=1 -complete=custom,s:complete_uninstall LspUninstall :call lspinstall#uninstall_server('<args>')
 

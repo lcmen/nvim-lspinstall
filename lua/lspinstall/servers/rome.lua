@@ -1,9 +1,7 @@
-local config = require"lspinstall/util".extract_config("rome")
-config.default_config.cmd[1] = "./node_modules/.bin/rome"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./node_modules/.bin/rome" },
   install_script = [[
   ! test -f package.json && npm init -y --scope=lspinstall || true
   npm install rome@latest
   ]]
-})
+}

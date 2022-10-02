@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("sumneko_lua")
-config.default_config.cmd = { "./sumneko-lua-language-server" }
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./sumneko-lua-language-server" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -26,4 +24,4 @@ return vim.tbl_extend('error', config, {
 
   chmod +x sumneko-lua-language-server
   ]]
-})
+}
