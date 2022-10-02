@@ -1,8 +1,5 @@
-
-local config = require"lspinstall/util".extract_config("zls")
-config.default_config.cmd[1] = "./zls/zls"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./zls/zls" },
   install_script = [[
     os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -21,4 +18,4 @@ return vim.tbl_extend('error', config, {
     tar -xf zls.tar.xz -C zls --strip-components 1
     rm zls.tar.xz
   ]]
-})
+}

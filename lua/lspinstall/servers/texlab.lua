@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("texlab")
-config.default_config.cmd[1] = "./texlab"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./texlab" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -18,4 +16,4 @@ return vim.tbl_extend('error', config, {
   tar -xzf texlab.tar.gz
   rm texlab.tar.gz
   ]]
-})
+}

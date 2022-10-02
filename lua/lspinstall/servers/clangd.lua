@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("clangd")
-config.default_config.cmd[1] = "./clangd/bin/clangd"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./clangd/bin/clangd" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
 
@@ -20,4 +18,4 @@ return vim.tbl_extend('error', config, {
   rm clangd.zip
   mv clangd_* clangd
   ]]
-})
+}

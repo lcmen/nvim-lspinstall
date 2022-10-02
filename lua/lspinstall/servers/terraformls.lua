@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("terraformls")
-config.default_config.cmd[1] = "./terraform-ls"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./terraform-ls" },
   install_script = [[
   os=$(uname -s | tr "[:upper:]" "[:lower:]")
   arch=$(uname -m | tr "[:upper:]" "[:lower:]")
@@ -15,7 +13,7 @@ return vim.tbl_extend('error', config, {
   ;;
   esac
 
-  case $arch in 
+  case $arch in
   i386)
     architecture=386
   ;;
@@ -42,4 +40,4 @@ return vim.tbl_extend('error', config, {
   unzip terraform.zip
   rm terraform.zip
   ]]
-})
+}

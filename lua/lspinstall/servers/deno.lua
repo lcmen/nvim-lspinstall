@@ -1,7 +1,5 @@
-local config = require"lspinstall/util".extract_config("denols")
-config.default_config.cmd[1] = "./bin/deno"
-
-return vim.tbl_extend('error', config, {
+return {
+  cmd = { "./bin/deno" },
   install_script = [=[
   case $(uname -sm) in
     "Darwin x86_64") target="x86_64-apple-darwin" ;;
@@ -15,4 +13,4 @@ return vim.tbl_extend('error', config, {
   unzip -d "bin" "deno.zip"
   rm "deno.zip"
   ]=]
-})
+}
