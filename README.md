@@ -1,9 +1,7 @@
 ## About
 
-This is fork of [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall) plugin, adopted to the latest version of
-Neovim and `nvim-lspconfig`. The main difference between this and the original version, is that this fork does not override default
-settings from `nvim-lspconfig` but provides configuration (including `cmd` to start lsp server), that can be passed to
-`setup` function at runtime.
+This is fork of [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall) plugin, adopted to the latest version of Neovim and `nvim-lspconfig`.
+The main difference between this and the original version, is providing a valid configuration (mainly `cmd` to start lsp server) which can be passed to `setup` function, instead of overriding the default settings for `nvim-lspconfig`.
 
 The language servers are installed *locally* (via `:LspInstall <language>` command) into `stdpath("data")`. You can use `:echo stdpath("data")` to find out which directory that is on your machine.
 
