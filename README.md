@@ -105,7 +105,7 @@ The following example provides an installer for `bash-language-server`.
 ```lua
 require'lspinstall/servers'.bash = {
   -- 1. provide cmd to start the server.
-  -- elative paths are allowed, lspinstall automatically adjusts the cmd and cmd_cwd for us!
+  -- relative paths are allowed, lspinstall automatically adjusts the cmd and cmd_cwd for us!
   config.default_config.cmd = { "./node_modules/.bin/bash-language-server" },
 
   -- 2. provide script to install the server.
