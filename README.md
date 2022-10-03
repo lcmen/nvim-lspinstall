@@ -47,52 +47,44 @@ end
 
 ## Bundled Installers
 
-| Language    | Language Server                                                             |
-|-------------|-----------------------------------------------------------------------------|
-| angular     | Angular Language Service                                                    |
-| bash        | bash-language-server                                                        |
-| clojure     | clojure-lsp                                                                 |
-| cmake       | cmake-language-server                                                       |
-| cpp         | clangd                                                                      |
-| csharp      | OmniSharp                                                                   |
-| css         | css-language-features (pulled directly from the latest VSCode release)      |
-| dockerfile  | docker-langserver                                                           |
-| elixir      | Elixir Language Server (elixir-ls)                                          |
-| elm         | Elm Language Server (elm-ls)                                                |
-| ember       | Ember Language Server                                                       |
-| fortran     | Fortran Language Server (fortls)                                            |
-| go          | gopls                                                                       |
-| graphql     | GraphQL language service                                                    |
-| haskell     | haskell-language-server                                                     |
-| html        | html-language-features (pulled directly from the latest VSCode release)     |
-| json        | json-language-features (pulled directly from the latest VSCode release)     |
-| latex       | texlab                                                                      |
-| lua         | (sumneko) lua-language-server                                               |
-| php         | intelephense                                                                |
-| prisma      | prisma-language-server                                                      |
-| puppet      | puppet-editor-services                                                      |
-| purescript  | purescript-language-server                                                  |
-| python      | pyright-langserver                                                          |
-| ruby        | solargraph                                                                  |
-| rust        | rust-analyzer                                                               |
-| svelte      | svelte-language-server                                                      |
-| tailwindcss | tailwindcss-intellisense (pulled directly from the latest VSCode extension) |
-| terraform   | Terraform Language Server (terraform-ls)                                    |
-| typescript  | typescript-language-server                                                  |
-| vim         | vim-language-server                                                         |
-| vue         | vls (vetur)                                                                 |
-| yaml        | yaml-language-server                                                        |
-| zig         | zls                                                                         |
-
-| Name        | Description                                                                 |
-|-------------|-----------------------------------------------------------------------------|
-| deno        | https://deno.land/                                                          |
-| diagnosticls| https://github.com/iamcco/diagnostic-languageserver                         |
-| efm         | https://github.com/mattn/efm-langserver                                     |
-| rome        | https://rome.tools/                                                         |
-
-Note: css, json and html language servers are pulled directly from the latest VSCode release, instead of using the outdated versions provided by e.g. `npm install vscode-html-languageserver-bin`.
-
+* `angularls`
+* `bashls`
+* `clangd`
+* `clojure-lsp `
+* `cmake`
+* `cssls`
+* `deno`
+* `diagnosticls`
+* `dockerls`
+* `efm`
+* `elixirls`
+* `elmls`
+* `ember`
+* `fortls`
+* `gopls`
+* `graphql`
+* `hls`
+* `html`
+* `intelephense`
+* `jsonls`
+* `omnisharp`
+* `prismals`
+* `puppet`
+* `purescriptls`
+* `pyright`
+* `rome`
+* `rust_analyzer`
+* `solargraph`
+* `sumneko_lua`
+* `svelte`
+* `tailwindcss `
+* `terraformls`
+* `texlab`
+* `tsserver`
+* `vimls`
+* `vuels`
+* `yamlls`
+* `zls`
 
 ## Custom Installer
 
