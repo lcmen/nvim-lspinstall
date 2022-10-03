@@ -6,7 +6,8 @@ function M.start_cmd(lang, cmd)
   local exe = cmd[1]
   if vim.regex([[^[.]\{1,2}\/]]):match_str(exe) then -- matches ./ and ../
     -- prepend the install path if the executable is a relative path
-    return { M.install_path(lang) .. "/" .. exe }
+    cmd[1] = M.install_path(lang) .. "/" .. exe
+    return cmd
   else
     return cmd
   end
@@ -21,9 +22,13 @@ end
 --- Gets lsp config for a server of a given language
 --@returns table
 function M.config(lang, server)
-  cmd = M.start_cmd(lang, server.cmd)
-  opts = vim.tbl_filter(function(key, _) return (key ~= "cmd" and key ~= "install_script") end, server)
-  return vim.tbl_extend("error", { cmd = cmd }, opts)
+  opts = { cmd = M.start_cmd(lang, server.cmd) }
+  for key, value in pairs(server) do
+    if (key ~= "cmd" and key ~= "install_script") then
+      opts[key] = value
+    end
+  end
+  return opts
 end
 
 return M
