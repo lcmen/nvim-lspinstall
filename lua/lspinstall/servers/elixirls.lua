@@ -1,10 +1,11 @@
 return {
   cmd = { "./elixir-ls/language_server.sh" },
   install_script = [[
-    curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
-    rm -rf elixir-ls
-    unzip elixir-ls.zip -d elixir-ls
-    rm elixir-ls.zip
-    chmod +x elixir-ls/language_server.sh
+    dir=$(pwd)
+    repo=$(mktemp -d)
+    git clone --depth 1 https://github.com/elixir-lsp/elixir-ls "${repo}"
+    cd "${repo}" || exit 1
+    mix deps.get
+    mix elixir_ls.release -o "${dir}/elixir-ls"
   ]],
 }
