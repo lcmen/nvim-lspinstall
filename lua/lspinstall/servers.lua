@@ -12,6 +12,7 @@ local servers = {
   ["elixirls"] = require'lspinstall/servers/elixirls',
   ["elmls"] = require'lspinstall/servers/elmls',
   ["ember"] = require'lspinstall/servers/ember',
+  ["eslint"] = require'lspinstall/servers/eslint',
   ["fortls"] = require'lspinstall/servers/fortls',
   ["gopls"] = require'lspinstall/servers/gopls',
   ["graphql"] = require'lspinstall/servers/graphql',

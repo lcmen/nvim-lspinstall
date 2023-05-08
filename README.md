@@ -60,6 +60,7 @@ end
 * `elixirls`
 * `elmls`
 * `ember`
+* `eslint`
 * `fortls`
 * `gopls`
 * `graphql`
