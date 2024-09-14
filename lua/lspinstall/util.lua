@@ -16,7 +16,14 @@ end
 --- Gets lsp server install directory
 --@returns string
 function M.install_path(lang)
-  return vim.fn.stdpath("data") .. "/lspinstall/" .. lang
+  -- return vim.fn.stdpath("data") .. "/lspinstall/" .. lang
+  -- return find_git_root() .. "/.lspinstall/"
+  local root = find_git_root()
+  if root == nil then
+    return "~/.lspinstall/"
+  else
+    return root .. "/.lspinstall/" .. lang
+  end
 end
 
 --- Gets lsp config for a server of a given language
@@ -29,6 +36,17 @@ function M.config(lang, server)
     end
   end
   return opts
+end
+
+function find_git_root()
+  local dir = vim.fn.getcwd()
+  while dir ~= "/" do
+    if vim.fn.isdirectory(dir .. "/.git") == 1 then
+      return dir
+    end
+    dir = vim.fn.fnamemodify(dir, ":h")
+  end
+  return nil  -- Return nil if no .git directory is found
 end
 
 return M

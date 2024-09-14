@@ -37,6 +37,7 @@ function M.uninstall_server(lang)
 
   if vim.fn.isdirectory(path) ~= 1 then -- 0: false, 1: true
     error("Language server is not installed")
+    return
   end
 
   local function onExit(_, code)

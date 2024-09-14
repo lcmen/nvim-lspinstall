@@ -50,10 +50,8 @@ end
 * `angularls`
 * `bashls`
 * `clangd`
-* `clojure-lsp `
 * `cmake`
 * `cssls`
-* `deno`
 * `diagnosticls`
 * `dockerls`
 * `efm`
@@ -76,7 +74,6 @@ end
 * `rome`
 * `rust_analyzer`
 * `solargraph`
-* `sumneko_lua`
 * `svelte`
 * `tailwindcss `
 * `terraformls`
